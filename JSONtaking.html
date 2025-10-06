@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>AirFly Frequent Flyers</title>
+        <script>
+            function check(){
+                // Get the data from the input
+                var first = document.getElementById("first").value;
+                var last = document.getElementById("last").value;
+                var driver = document.getElementById("password").value;
+                var tax = document.getElementById("email").value;
+                var atar = document.getElementById("points").value;
+
+                // Tab nicely and set where the data goes
+                frequentFlyerJSON = {
+                    "First Name": first,
+                    "Last Name": last,
+                    "Password": password,
+                    "Email": email,
+                    "Points": points
+                };
+
+                // display the result and stringify JSON object
+                jsonDisplay.value = JSON.stringify(frequentFlyerJSON, null, 2)
+            }
+        </script>
+    </head>
+    <body>
+        <!-- All the input -->
+        Enter your first name: <input type="text" id="first"> <br>
+        Enter your last name: <input type="text" id="last"> <br>
+        Enter your password: <input type="text" id="password"> <br>
+        Enter your email address: <input type="text" id="email"> <br>
+        Enter your points: <input type="text" id="points"> <br>
+        <button id="button" onclick="check()">Generate JSON</button>
+        <br>
+        <!-- Making the JSON box and making sure it is big enough -->
+        <textarea name="jsonDisplay" id="jsonDisplay" style="width:400px; height: 130px;"></textarea>
+    </body>
+</html>
