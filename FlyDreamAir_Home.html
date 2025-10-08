@@ -1,56 +1,205 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="FlyDreamAir_style.css"/> 
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FlyDreamAir — Home</title>
+  <!-- Keep your shared base styling -->
+  <link rel="stylesheet" type="text/css" href="FlyDreamAir_style.css"/>
 </head>
-
-
 
 <body>
 
-    <Header>
+  <!-- Header / Navigation -->
+  <header>
+    <a href="FlyDreamAir_Home.html">
+      <img class="logo" src="Logo_blue.png" alt="logo" width="80" height="50">
+    </a>
+
+    <nav>
+      <a href="login.html">Login</a>
+      <a href="Information.html">Reward System</a>
+      <a href="Booking.html">Book a Flight</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Main title (styled by base CSS) -->
+    <h2 style="padding:0.40%">    </h2>
+
+    <!-- HERO SECTION: Updated login block -->
+    <section
+      style="
+        width:100%;
+        background:linear-gradient(135deg,#E6F0FA,#BFD8F2);
+        padding:60px 16px;
+        box-sizing:border-box;
+      "
+      aria-label="Welcome">
+      <div
+        style="
+          max-width:900px;
+          margin:0 auto;
+          text-align:center;
+          background:#ffffffcc;
+          padding:40px 30px;
+          border-radius:16px;
+          box-shadow:0 6px 18px rgba(0,0,0,0.15);
+        ">
+        <h2
+          style="
+            margin:0 0 15px 0;
+            font-size:2.4rem;
+            font-weight:bold;
+            color:#003B73;
+          ">
+          Welcome to FlyDreamAir
+        </h2>
+        <p
+          style="
+            margin:0 0 28px 0;
+            font-size:1.25rem;
+            line-height:1.5;
+            color:#005BAC;
+          ">
+          Your journey starts here — log in to book flights, manage trips, and earn SkyPoints.
+        </p>
+        <a href="login.html"
+           style="
+             display:inline-block;
+             background:#005BAC;
+             color:#fff;
+             text-decoration:none;
+             padding:16px 36px;
+             border-radius:10px;
+             font-weight:bold;
+             font-size:1.15rem;
+             box-shadow:0 4px 12px rgba(0,0,0,0.2);
+             transition:background 0.3s ease;
+           "
+           onmouseover="this.style.background='#003B73'"
+           onmouseout="this.style.background='#005BAC'">
+          LOGIN
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Article Content -->
+  <article>
     
-        <a href="FlyDreamAir_Home.html"> <img class="logo" src="Logo_blue.png" alt="logo" width="80" height="50">  </img> </a>
-     
-        <nav>
-            <a href="login.html">Login</a>
-            <a href="Information.html">Reward System</a>
-            <a href="Booking.html">Book a Flight</a>
-        </nav>
-        
-    </Header>
 
-    <main>
+    <!-- Feature cards -->
+    <div
+      style="
+        max-width:1100px;margin:24px auto;
+        display:flex;gap:18px;flex-wrap:wrap;justify-content:center;
+      ">
+      <!-- Card 1 -->
+      <div
+        style="
+          flex:1 1 300px;max-width:340px;
+          background:#FFFFFF;border-radius:12px;
+          box-shadow:0 8px 24px rgba(0,0,0,0.08);
+          padding:16px;text-align:left;
+        ">
+        <div
+          style="
+            width:100%;height:160px;border-radius:10px;
+            background:linear-gradient(135deg,#BFD8F2,#E6F0FA);
+            margin-bottom:12px;
+          "
+          aria-hidden="true"></div>
+        <h3 style="margin:0 0 6px 0;color:#003B73;">Book in minutes</h3>
+        <p style="margin:0 0 10px 0;color:#333;">Search routes, compare fares, and lock in your seat fast.</p>
+        <a href="login.html" style="color:#005BAC;text-decoration:none;font-weight:bold;">Start a booking →</a>
+      </div>
 
-        <h1>FlyDreamAir </h1>
+      <!-- Card 2 -->
+      <div
+        style="
+          flex:1 1 300px;max-width:340px;
+          background:#FFFFFF;border-radius:12px;
+          box-shadow:0 8px 24px rgba(0,0,0,0.08);
+          padding:16px;text-align:left;
+        ">
+        <div
+          style="
+            width:100%;height:160px;border-radius:10px;
+            background:linear-gradient(135deg,#D5E7FB,#EAF3FF);
+            margin-bottom:12px;
+          "
+          aria-hidden="true"></div>
+        <h3 style="margin:0 0 6px 0;color:#003B73;">Manage trips</h3>
+        <p style="margin:0 0 10px 0;color:#333;">Check in, choose seats, and track your flight status.</p>
+        <a href="UserAccount.html" style="color:#005BAC;text-decoration:none;font-weight:bold;">Manage your trip →</a>
+      </div>
 
-    </main>
+      <!-- Card 3 -->
+      <div
+        style="
+          flex:1 1 300px;max-width:340px;
+          background:#FFFFFF;border-radius:12px;
+          box-shadow:0 8px 24px rgba(0,0,0,0.08);
+          padding:16px;text-align:left;
+        ">
+        <div
+          style="
+            width:100%;height:160px;border-radius:10px;
+            background:linear-gradient(135deg,#CFE3FA,#E6F0FA);
+            margin-bottom:12px;
+          "
+          aria-hidden="true"></div>
+        <h3 style="margin:0 0 6px 0;color:#003B73;">Earn rewards</h3>
+        <p style="margin:0 0 10px 0;color:#333;">Collect SkyPoints and redeem for upgrades and extras.</p>
+        <a href="Information.html" style="color:#005BAC;text-decoration:none;font-weight:bold;">See rewards →</a>
+      </div>
+    </div>
 
-    <article>
+    <!-- Destinations grid -->
+    <div
+      style="
+        max-width:1000px;margin:8px auto 0;
+        display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+        gap:14px;
+      ">
+      <div style="background:#BFD8F2;height:120px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:bold;color:#003B73;">Sydney</div>
+      <div style="background:#BFD8F2;height:120px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:bold;color:#003B73;">Hong&nbsp;Kong</div>
+      <div style="background:#BFD8F2;height:120px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:bold;color:#003B73;">Tokyo</div>
+      <div style="background:#BFD8F2;height:120px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:bold;color:#003B73;">Singapore</div>
+    </div>
 
-        <h2>Home</h2>
-        <p></p>
-        <p></p>
-        <br>
-        <br>
-        
+    <br><br>
+  </article>
 
-    </article>
-    <br> 
-    <br> 
+  <!-- Footer -->
+  <footer>
+    <p>&copy; <span id="year"></span> FlyDreamAir</p>
 
-   
-   
+    <button id="logoutBtn"
+        style="margin-top:10px;padding:6px 14px;background:#B22222;color:#fff;
+        border:none;border-radius:4px;cursor:pointer;">
+        Logout
+    </button>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+   // Logout button logic
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      // Clear login flag
+      localStorage.removeItem("FlyDreamAir_isLoggedIn");
+
+    });
+  }
+
+
+  </script>
 
 
 </body>
-
-<footer>
-    <p>&copy; FlyDreamAir </p>
-    
-</footer>
 </html>
