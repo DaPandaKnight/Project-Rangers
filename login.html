@@ -1,56 +1,60 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="FlyDreamAir_style.css"/> 
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-
-
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" href="FlyDreamAir_style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login – FlyDreamAir</title>
 </head>
 
-
-
 <body>
+  <header>
+    <a href="FlyDreamAir_Home.html">
+      <img class="logo" src="Logo_blue.png" alt="FlyDreamAir logo" width="80" height="50">
+    </a>
+    <nav>
+      <a href="Information.html">Reward System</a>
+      <a href="Booking.html">Book a Flight</a>
+    </nav>
+  </header>
 
-    <Header>
-    
-        <a href="FlyDreamAir_Home.html"> <img class="logo" src="Logo_blue.png" alt="logo" width="80" height="50">  </img> </a>
-     
-        <nav>
-            <a href="login.html">Login</a>
-            <a href="Information.html">Reward System</a>
-            <a href="Booking.html">Book a Flight</a>
-        </nav>
-        
-    </Header>
+  <main></main>
 
-    <main>
+  <article>
+    <h1>Login to FlyDreamAir</h1>
 
-        <h1>FlyDreamAir  </h1>
+    <!--Basic non formated buttons-->
+    <form id="loginForm" autocomplete="off" style="max-width:420px;margin:0 auto;text-align:left;">
+      <label for="username">Username</label>
+      <input id="username" type="text" placeholder="Username" required>
 
-    </main>
+      <label for="password">Password</label>
+      <input id="password" type="password" placeholder="Password" required>
 
-    <article>
-
-        <h2>Login</h2>
-        <p></p>
-        <p></p>
-        <br>
-        <br>
-        
-
-    </article>
-    <br> 
-    <br> 
-
-   
-   
+      <button type="submit" style="margin-top:10px;">Log in</button>
+    </form>
 
 
+
+    <br><br>
+  </article>
+
+  <footer>
+    <p>&copy; FlyDreamAir</p>
+  </footer>
+
+  <script>
+    //handles the local stroage for ensuring that users needs to be logined in. 
+    function handleLogin(e) {
+      e.preventDefault();
+      // Prototype: set the login flag
+      localStorage.setItem("FlyDreamAir_isLoggedIn", "true");
+      // Redirect somewhere after login
+      window.location.href = "UserAccount.html";
+    }
+
+    const f = document.getElementById("loginForm");
+    if (f) f.addEventListener("submit", handleLogin);
+  </script>
 </body>
-
-<footer>
-    <p>&copy; FlyDreamAir </p>
-    
-</footer>
 </html>
