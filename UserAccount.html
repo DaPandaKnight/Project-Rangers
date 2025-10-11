@@ -32,19 +32,31 @@
 
     <article>
 
-        <h2>Account</h2>
-        <p></p>
-        <p></p>
-        <br>
-        <br>
+        <!-- In script using innerHTML -->
         
 
     </article>
     <br> 
     <br> 
 
-   
-   
+<script>
+  // Retrieve user data from localStorage
+  const user = JSON.parse(localStorage.getItem("FlyDreamAir_user"));
+
+  if (user) {
+    // Display user information
+    document.querySelector("article").innerHTML = `
+      <h2>Account Information</h2>
+      <p><strong>Name:</strong> ${user.username}</p>
+      <p><strong>Points:</strong> ${user.points}</p>
+      <p><strong>Status:</strong> ${user.status}</p>
+    `;
+  } else {
+    // Redirect to login page if no user is logged in
+    alert("You must log in to view this page.");
+    window.location.href = "login.html";
+  }
+</script>
 
 
 </body>
