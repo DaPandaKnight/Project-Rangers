@@ -17,7 +17,7 @@
     </a>
 
     <nav>
-      <a href="login.html">Login</a>
+      <a href="login.html" id = "login_top">Login</a>
       <a href="Information.html">Reward System</a>
       <a href="Booking.html">Book a Flight</a>
     </nav>
@@ -61,7 +61,7 @@
             font-size:1.25rem;
             line-height:1.5;
             color:#005BAC;
-          ">
+          " id = "welcome">
           Your journey starts here — log in to book flights, manage trips, and earn SkyPoints.
         </p>
         <a href="login.html"
@@ -78,7 +78,8 @@
              transition:background 0.3s ease;
            "
            onmouseover="this.style.background='#003B73'"
-           onmouseout="this.style.background='#005BAC'">
+           onmouseout="this.style.background='#005BAC'"
+           id="login_button">
           LOGIN
         </a>
       </div>
@@ -196,8 +197,28 @@
 
       alert('Logged out')
 
+      // Refresh the page
+      window.location.reload();
+
     });
   }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const loggedIn = localStorage.getItem("FlyDreamAir_isLoggedIn");
+    if (!loggedIn) {
+     //window.location.href = "login.html";
+    } else {
+      user = JSON.parse(localStorage.getItem("FlyDreamAir_user"));
+      var account_display = document.getElementById("welcome");
+      account_display.innerHTML = "Hi, " + user.username;
+
+      var login_button = document.getElementById("login_button");
+      login_button.style.display = "none";
+
+      var lagin_top = document.getElementById("login_top");
+      lagin_top.style.display = "none";
+                }
+            });
 
 
   </script>
