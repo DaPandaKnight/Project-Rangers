@@ -59,33 +59,30 @@
                 function move() {
                     if (length >= 100) {
                         clearInterval(load);
-                        if (destination == "GoldCoast") {
-                            user.points += 61;
-                            localStorage.setItem("FlyDreamAir_user", JSON.stringify(user)); // Save updated user
-                            title.innerHTML = "Thank you for your booking.";
-                            text.innerHTML = "61 points have been added to your account.<br/> You now have " + user.points + " points";
-                        } else if (destination == "Bali") {
-                            user.points += 294;
-                            localStorage.setItem("FlyDreamAir_user", JSON.stringify(user));
-                            title.innerHTML = "Thank you for your booking.";
-                            text.innerHTML = "294 points have been added to your account.<br/> You now have " + user.points + " points";
-                        } else if (destination == "Hawaii") {
-                            user.points += 627;
-                            localStorage.setItem("FlyDreamAir_user", JSON.stringify(user));
-                            title.innerHTML = "Thank you for your booking.";
-                            text.innerHTML = "627 points have been added to your account.<br/> You now have " + user.points + " points";
-                        } else if (destination == "Cairns") {
-                            user.points += 119;
-                            localStorage.setItem("FlyDreamAir_user", JSON.stringify(user));
-                            title.innerHTML = "Thank you for your booking.";
-                            text.innerHTML = "119 points have been added to your account.<br/> You now have " + user.points + " points";
-                        } else if (destination == "Tokyo") {
-                            user.points += 179;
-                            localStorage.setItem("FlyDreamAir_user", JSON.stringify(user));
-                            title.innerHTML = "Thank you for your booking.";
-                            text.innerHTML = "179 points have been added to your account.<br/> You now have " + user.points + " points";
+                        var pointsEarned = 0
+                        if (destination == "GoldCoast") pointsEarned = 61;
+                        else if (destination == "Bali") pointsEarned = 294;
+                        else if (destination == "Hawaii") pointsEarned = 627;
+                        else if (destination == "Cairns") pointsEarned = 119;
+                        else if (destination == "Tokyo") pointsEarned = 179;
+
+                        user.points += pointsEarned;
+                        localStorage.setItem("FlyDreamAir_user", JSON.stringify(user));
+
+                        text.innerHTML = pointsEarned + " points have been added to your account.<br/>You now have " + user.points + " points."
+                        //if else for discount 
+                        if(user.points < 500){
+                          title.innerHTML = "Thank you for your booking.<br/>You're on your way to rewards!"
+                        } else if(user.points < 1000){
+                          title.innerHTML = "Thank you for your booking.<br/>A 5% discount has been applied!"
+                        }else if(user.points < 3000){
+                          title.innerHTML = "Thank you for your booking.<br/>A 10% discount has been applied!"
+                        }else if(user.points < 6000){
+                          title.innerHTML = "Thank you for your booking.<br/>A 15% discount has been applied!"
+                        }else if(user.points > 6000){
+                          title.innerHTML = "Thank you for your booking.<br/>A 20% discount has been applied!"
                         }
-                    } else {
+                      }else{
                         length++;
                         bar.style.width = length + "%";
 
@@ -98,9 +95,9 @@
                         } else if (length < 100) {
                             text.innerHTML = "Taking off...";
                         }
+                      }
                     }
-                }
-            }
+                  }
         </script>
     </head>
     <body>
