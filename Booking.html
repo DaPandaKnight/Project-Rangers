@@ -4,41 +4,98 @@
         <link rel="stylesheet" type="text/css" href="FlyDreamAir_style.css"/> 
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         <style>
+            #barContainer{
+              width: 100%;
+              max-width: 600px;
+              background: #e0e0e0;
+              border-radius: 8px;
+              margin: 40px auto;
+              height: 30px;
+              display:none;
+            }
             #loadingBar{
-                font-size: xx-large;
-                width:1%;
+                font-size: 12px;
+                width: 1%;
+                height: 100%;
                 background-color:#6da1d0;
-                border-radius: 12px;
+                border-radius: 8px;
+                transition: width 0.1s linear;
             }
             #barText{
                 font:12px
             }
+            #buttons{
+              box-shadow:0 8px 24px rgba(0,0,0,0.08);
+            }
+            #cards{
+              text-align:left;
+            }
         </style>
         <script>
             //checks to see if the user is login, or redirects to login page
-            //(function checkAuth(){
-              //  const loggedIn = localStorage.getItem("FlyDreamAir_isLoggedIn");
-                //    if (!loggedIn) {
+            (function checkAuth(){
+                const loggedIn = localStorage.getItem("FlyDreamAir_isLoggedIn");
+                    if (!loggedIn) {
                     // Not logged in → redirect
-                  //  window.location.href = "login.html";
-                //}
-            //})();
-            function moveBar(){
+                    window.location.href = "login.html";
+                }
+            })();
+            function moveBar(destination){
+                var container = document.getElementById("barContainer")
                 var bar = document.getElementById("loadingBar");
+                var text =document.getElementById("barText");
+                var title = document.getElementById("title");
                 var length = 0;
-                var load = setInterval(move, 30);
-                var cards = document.getElementById("cards");
-                cards.innerHTML = ""
+                var points = 0;
+                var load = setInterval(move, 40);
+                var cards = document.getElementById("allCards");
+                cards.innerHTML = "";
+                title.innerHTML = "Confirming Booking";
+                container.style.display = "block";
             function move(){
+                if (destination == "GoldCoast"){
+                  
+                }
                 if (length >= 100){
                     clearInterval(load);
-                } else{
-                    bar.innerHTML = "🛫"
+                  if (destination == "GoldCoast"){
+                    points += 61;
+                    title.innerHTML = "Thank you for your booking.";
+                    text.innerHTML = "61 points have been added to your account.<br/> You now have " + points + " points";
+                  }else if (destination == "Bali"){
+                    points += 294;
+                    title.innerHTML = "Thank you for your booking.";
+                    text.innerHTML = "294 points have been added to your account.<br/> You now have " + points + " points"; 
+                  }else if (destination == "Hawaii"){
+                    points += 627;
+                    title.innerHTML = "Thank you for your booking.";
+                    text.innerHTML = "627 points have been added to your account.<br/> You now have " + points + " points"
+                  }else if (destination == "Cairns"){
+                    points += 119;
+                    title.innerHTML = "Thank you for your booking.";
+                    text.innerHTML = "119 points have been added to your account.<br/> You now have " + points + " points"
+                  }else if (destination == "Tokyo"){
+                    points += 179;
+                    title.innerHTML = "Thank you for your booking.";
+                    text.innerHTML = "179 points have been added to your account.<br/> You now have " + points + " points"
+                  }
+                }
+                  else{
                     length++
                     bar.style.width = length + "%"
+                    
+                    if (length < 25){
+                      text.innerHTML = "Selecing your seats...";
+                    }else if (length < 50){
+                      text.innerHTML = "Checking in luggage...";
+                    }else if (length < 75){
+                      text.innerHTML = "Boarding flight...";
+                    }else if (length < 100){
+                      text.innerHTML = "Taking off...";
+                  }
                 }
             }
-        }
+          }
         </script>
     </head>
     <body>
@@ -47,7 +104,7 @@
                 <img class="logo" src="Logo_blue.png" alt="logo" width="80" height="50"/> 
             </a>
             <nav>
-                <a href="UserAccount.html">Hi, {insert name}</a>
+                <a href="UserAccount.html">Hi, {insert name}</a> <!--Correct way to display logged in account name must be incorporated-->
                 <!--Assume account is already logged in, users name will display in select bar, directs to account info-->
                 <a href="Information.html">Reward System</a>
                 
@@ -59,134 +116,147 @@
         </main>
 
         <article>
-            <h2>Flights</h2>
+            <h2 id="title">Flights</h2>
             <p>
                 <!-- Feature cards -->
-                <div id="cards"
+                <div id="allCards"
                   style="
                     max-width:1100px;margin:24px auto;
                     display:flex;flex-wrap: wrap;gap:18px;justify-content:center;
                   ">
                   <!-- Card 1 -->
-                  <div
+                  <div id="cards"
                     style="
                       flex:1 1 300px;max-width:340px;
                       background:#FFFFFF;border-radius:12px;
                       box-shadow:0 8px 24px rgba(0,0,0,0.08);
-                      padding:16px;text-align:left;
+                      padding:16px;
                     ">
                     <div
                       style="
                         width:100%;height:160px;border-radius:10px;
                         background:linear-gradient(135deg,#BFD8F2,#E6F0FA);
-                        margin-bottom:12px;
+                        margin-bottom:12px; overflow:hidden
                       "
-                      aria-hidden="true"></div>
-                    <h3 style="margin:0 0 6px 0;color:#003B73;"></h3>
-                    <p style="margin:0 0 10px 0;color:#333;"></p>
-                    <button id="buttons" onclick="moveBar()">Book Flight</button>
+                      aria-hidden="true">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Gold_Coast_skyline_%28Unsplash%29.jpg/960px-Gold_Coast_skyline_%28Unsplash%29.jpg" style="width:100%;height:100%;">
+                    </div>
+                    <h3 style="margin:0 0 6px 0;color:#003B73;">Sydney to Gold Coast</h3>
+                    <p style="margin:0 0 10px 0;color:#333;text-align: center;">From $61</p>
+                    <button id="buttons" onclick="moveBar('GoldCoast')">Book Flight</button>
                   </div>
                   <!-- Card 2 -->
-                  <div
+                  <div id="cards"
                     style="
                       flex:1 1 300px;max-width:340px;
                       background:#FFFFFF;border-radius:12px;
                       box-shadow:0 8px 24px rgba(0,0,0,0.08);
-                      padding:16px;text-align:left;
+                      padding:16px;
                       ">
                     <div
                       style="
                         width:100%;height:160px;border-radius:10px;
                         background:linear-gradient(135deg,#D5E7FB,#EAF3FF);
-                        margin-bottom:12px;
+                        margin-bottom:12px;overflow:hidden
                       "
-                      aria-hidden="true"></div>
-                    <h3 style="margin:0 0 6px 0;color:#003B73;"></h3>
-                    <p style="margin:0 0 10px 0;color:#333;"></p>
-                    <button id="buttons" onclick="moveBar()">Book Flight</button>
+                      aria-hidden="true">
+                      <img src="https://cdn.audleytravel.com/2478/1770/79/16027396-pura-ulun-danu-bratan-bali.jpg" style="width:100%;height:100%;">
+                    </div>
+                    <h3 style="margin:0 0 6px 0;color:#003B73;">Brisbane to Bali</h3>
+                    <p style="margin:0 0 10px 0;color:#333;text-align: center;">From $294</p>
+                    <button id="buttons" onclick="moveBar('Bali')">Book Flight</button>
                   </div>
                   <!-- Card 3 -->
-                  <div
+                  <div id="cards"
                     style="
                       flex:1 1 300px;max-width:340px;
                       background:#FFFFFF;border-radius:12px;
                       box-shadow:0 8px 24px rgba(0,0,0,0.08);
-                      padding:16px;text-align:left;
+                      padding:16px;
                     ">
-                    <div
+                    <div id="cards"
                       style="
                         width:100%;height:160px;border-radius:10px;
                         background:linear-gradient(135deg,#CFE3FA,#E6F0FA);
-                        margin-bottom:12px;
+                        margin-bottom:12px;overflow: hidden;
                       "
-                      aria-hidden="true"></div>
-                    <h3 style="margin:0 0 6px 0;color:#003B73;"></h3>
-                    <p style="margin:0 0 10px 0;color:#333;"></p>
-                    <button id="buttons" onclick="moveBar()">Book Flight</button>
+                      aria-hidden="true">
+                      <img src="https://static.ffx.io/images/$zoom_0.356%2C$multiply_0.7725%2C$ratio_1.5%2C$width_756%2C$x_0%2C$y_0/t_crop_custom/q_86%2Cf_auto/a3509b82b56184288c57c39b24b93484d9d91238" style="width:100%;height:100%;">
+                    </div>
+                    <h3 style="margin:0 0 6px 0;color:#003B73;">Sydney to Hawaii</h3>
+                    <p style="margin:0 0 10px 0;color:#333;text-align: center;">From $627</p>
+                    <button id="buttons" onClick="moveBar('Hawaii')">Book Flight</button>
                   </div>
                   <!-- Card 4 -->
-                  <div
+                  <div id="cards"
                     style="
                       flex:1 1 300px;max-width:340px;
                       background:#FFFFFF;border-radius:12px;
                       box-shadow:0 8px 24px rgba(0,0,0,0.08);
-                      padding:16px;text-align:left;
+                      padding:16px;
                     ">
                     <div
                       style="
                         width:100%;height:160px;border-radius:10px;
                         background:linear-gradient(135deg,#CFE3FA,#E6F0FA);
-                        margin-bottom:12px;
+                        margin-bottom:12px; overflow: hidden;
                       "
-                      aria-hidden="true"></div>
-                    <h3 style="margin:0 0 6px 0;color:#003B73;"></h3>
-                    <p style="margin:0 0 10px 0;color:#333;"></p>
-                    <button id="buttons" onclick="moveBar()">Book Flight</button>
+                      aria-hidden="true">
+                      <img src="https://belleescapes.com.au/wp-content/uploads/2023/02/141461-231.jpg" style="width:100%;height:100%;">
+                    </div>
+                    <h3 style="margin:0 0 6px 0;color:#003B73;">Sydney to Cairns</h3>
+                    <p style="margin:0 0 10px 0;color:#333;text-align: center;">From $119</p>
+                    <button id="buttons" onclick="moveBar('Cairns')">Book Flight</button>
                   </div>
                   <!-- Card 5 -->
-                  <div
+                  <div id="cards"
                     style="
                       flex:1 1 300px;max-width:340px;
                       background:#FFFFFF;border-radius:12px;
                       box-shadow:0 8px 24px rgba(0,0,0,0.08);
-                      padding:16px;text-align:left;
+                      padding:16px;
                     ">
                     <div
                       style="
                         width:100%;height:160px;border-radius:10px;
                         background:linear-gradient(135deg,#CFE3FA,#E6F0FA);
-                        margin-bottom:12px;
+                        margin-bottom:12px;overflow: hidden;
                       "
-                      aria-hidden="true"></div>
-                    <h3 style="margin:0 0 6px 0;color:#003B73;"></h3>
-                    <p style="margin:0 0 10px 0;color:#333;"></p>
-                    <button onclick="moveBar()">Book Flight</button>
+                      aria-hidden="true">
+                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVv3bM6dyigFYyd4jk6hp3_5K6aXXyz8COrQ&s" style="width:100%;height:100%;">
+                    </div>
+                    <h3 style="margin:0 0 6px 0;color:#003B73;">Sydney to Tokyo</h3>
+                    <p style="margin:0 0 10px 0;color:#333;text-align: center;">From $179</p>
+                    <button id="buttons" onclick="moveBar('Tokyo')">Book Flight</button>
                   </div>
                   <!-- Card 6 -->
-                  <div
+                  <div id="cards"
                     style="
                       flex:1 1 300px;max-width:340px;
                       background:#FFFFFF;border-radius:12px;
                       box-shadow:0 8px 24px rgba(0,0,0,0.08);
-                      padding:16px;text-align:left;
+                      padding:16px;
                     ">
                     <div
                       style="
                         width:100%;height:160px;border-radius:10px;
                         background:linear-gradient(135deg,#CFE3FA,#E6F0FA);
-                        margin-bottom:12px;
+                        margin-bottom:12px;overflow: hidden;
                       "
-                      aria-hidden="true"></div>
-                    <h3 style="margin:0 0 6px 0;color:#003B73;"></h3>
-                    <p style="margin:0 0 10px 0;color:#333;"></p>
+                      aria-hidden="true">
+                      <img src="https://www.flightnetwork.com.au/system/image/open_graph_default_image.jpg" style="width:100%;height:100%;">
+                    </div>
+                    <h3 style="margin:0 0 6px 0;color:#003B73;">Looking for something else?</h3>
+                    <p style="margin:0 0 10px 0;color:#333;">Explore more flights</p>
+                    <button id="buttons" onclick="">View All</button>
                   </div>
                 </div>
             </p>
             <p>
-                <div class="barBackground">
+                <div id="barContainer">
                     <div id="loadingBar"></div>
-                    <div id="barText"></div>
                 </div>
+                <div id="barText"></div>
             </p>
             <p></p>
             <br>
