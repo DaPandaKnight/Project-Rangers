@@ -32,70 +32,75 @@
             }
         </style>
         <script>
-            //checks to see if the user is login, or redirects to login page
-            (function checkAuth(){
+            let user; // Declare globally
+            document.addEventListener("DOMContentLoaded", function() {
                 const loggedIn = localStorage.getItem("FlyDreamAir_isLoggedIn");
-                    if (!loggedIn) {
-                    // Not logged in → redirect
+                if (!loggedIn) {
                     window.location.href = "login.html";
+                } else {
+                    user = JSON.parse(localStorage.getItem("FlyDreamAir_user"));
+                    var account_display = document.getElementById("account");
+                    account_display.innerHTML = "Hi, " + user.username;
                 }
-            })();
-            function moveBar(destination){
-                var container = document.getElementById("barContainer")
+            });
+
+            function moveBar(destination) {
+                var container = document.getElementById("barContainer");
                 var bar = document.getElementById("loadingBar");
-                var text =document.getElementById("barText");
+                var text = document.getElementById("barText");
                 var title = document.getElementById("title");
                 var length = 0;
-                var points = 0;
                 var load = setInterval(move, 40);
                 var cards = document.getElementById("allCards");
                 cards.innerHTML = "";
                 title.innerHTML = "Confirming Booking";
                 container.style.display = "block";
-            function move(){
-                if (destination == "GoldCoast"){
-                  
-                }
-                if (length >= 100){
-                    clearInterval(load);
-                  if (destination == "GoldCoast"){
-                    points += 61;
-                    title.innerHTML = "Thank you for your booking.";
-                    text.innerHTML = "61 points have been added to your account.<br/> You now have " + points + " points";
-                  }else if (destination == "Bali"){
-                    points += 294;
-                    title.innerHTML = "Thank you for your booking.";
-                    text.innerHTML = "294 points have been added to your account.<br/> You now have " + points + " points"; 
-                  }else if (destination == "Hawaii"){
-                    points += 627;
-                    title.innerHTML = "Thank you for your booking.";
-                    text.innerHTML = "627 points have been added to your account.<br/> You now have " + points + " points"
-                  }else if (destination == "Cairns"){
-                    points += 119;
-                    title.innerHTML = "Thank you for your booking.";
-                    text.innerHTML = "119 points have been added to your account.<br/> You now have " + points + " points"
-                  }else if (destination == "Tokyo"){
-                    points += 179;
-                    title.innerHTML = "Thank you for your booking.";
-                    text.innerHTML = "179 points have been added to your account.<br/> You now have " + points + " points"
-                  }
-                }
-                  else{
-                    length++
-                    bar.style.width = length + "%"
-                    
-                    if (length < 25){
-                      text.innerHTML = "Selecing your seats...";
-                    }else if (length < 50){
-                      text.innerHTML = "Checking in luggage...";
-                    }else if (length < 75){
-                      text.innerHTML = "Boarding flight...";
-                    }else if (length < 100){
-                      text.innerHTML = "Taking off...";
-                  }
+
+                function move() {
+                    if (length >= 100) {
+                        clearInterval(load);
+                        if (destination == "GoldCoast") {
+                            user.points += 61;
+                            localStorage.setItem("FlyDreamAir_user", JSON.stringify(user)); // Save updated user
+                            title.innerHTML = "Thank you for your booking.";
+                            text.innerHTML = "61 points have been added to your account.<br/> You now have " + user.points + " points";
+                        } else if (destination == "Bali") {
+                            user.points += 294;
+                            localStorage.setItem("FlyDreamAir_user", JSON.stringify(user));
+                            title.innerHTML = "Thank you for your booking.";
+                            text.innerHTML = "294 points have been added to your account.<br/> You now have " + user.points + " points";
+                        } else if (destination == "Hawaii") {
+                            user.points += 627;
+                            localStorage.setItem("FlyDreamAir_user", JSON.stringify(user));
+                            title.innerHTML = "Thank you for your booking.";
+                            text.innerHTML = "627 points have been added to your account.<br/> You now have " + user.points + " points";
+                        } else if (destination == "Cairns") {
+                            user.points += 119;
+                            localStorage.setItem("FlyDreamAir_user", JSON.stringify(user));
+                            title.innerHTML = "Thank you for your booking.";
+                            text.innerHTML = "119 points have been added to your account.<br/> You now have " + user.points + " points";
+                        } else if (destination == "Tokyo") {
+                            user.points += 179;
+                            localStorage.setItem("FlyDreamAir_user", JSON.stringify(user));
+                            title.innerHTML = "Thank you for your booking.";
+                            text.innerHTML = "179 points have been added to your account.<br/> You now have " + user.points + " points";
+                        }
+                    } else {
+                        length++;
+                        bar.style.width = length + "%";
+
+                        if (length < 25) {
+                            text.innerHTML = "Selecting your seats...";
+                        } else if (length < 50) {
+                            text.innerHTML = "Checking in luggage...";
+                        } else if (length < 75) {
+                            text.innerHTML = "Boarding flight...";
+                        } else if (length < 100) {
+                            text.innerHTML = "Taking off...";
+                        }
+                    }
                 }
             }
-          }
         </script>
     </head>
     <body>
@@ -104,7 +109,7 @@
                 <img class="logo" src="Logo_blue.png" alt="logo" width="80" height="50"/> 
             </a>
             <nav>
-                <a href="UserAccount.html">Hi, {insert name}</a> <!--Correct way to display logged in account name must be incorporated-->
+                <a href="UserAccount.html" id="account"></a> <!--Correct way to display logged in account name must be incorporated-->
                 <!--Assume account is already logged in, users name will display in select bar, directs to account info-->
                 <a href="Information.html">Reward System</a>
                 
