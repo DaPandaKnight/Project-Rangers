@@ -1,0 +1,5 @@
+[
+  { "username": "alice", "password": "password123", "points": 1500, "status": "Bronze" },
+  { "username": "bob",   "password": "hunter2", "points": 2000, "status": "Silver"  },
+  { "username": "joe",   "password": "letmein", "points": 3000, "status": "Gold"  }
+]
