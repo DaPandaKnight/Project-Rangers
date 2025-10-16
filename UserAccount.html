@@ -17,7 +17,7 @@
         <a href="FlyDreamAir_Home.html"> <img class="logo" src="Logo_blue.png" alt="logo" width="80" height="50">  </img> </a>
      
         <nav>
-            <a href="login.html">Login</a>
+            <!-- <a href="login.html">Login</a> -->
             <a href="Information.html">Reward System</a>
             <a href="Booking.html">Book a Flight</a>
         </nav>
@@ -44,6 +44,18 @@
   const user = JSON.parse(localStorage.getItem("FlyDreamAir_user"));
 
   if (user) {
+    // Check points of user and update status
+    if (user.points > 6000){
+      user.status = "Diamond";
+    } else if (user.points > 3000){
+      user.status = "Platinum";
+    } else if (user.points > 1000){
+      user.status = "Gold";
+    } else if (user.points > 500){
+      user.status = "Silver";
+    } else {
+      user.status = "Bronze";
+    }
     // Display user information
     document.querySelector("article").innerHTML = `
       <h2>Account Information</h2>
